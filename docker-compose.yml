@@ -10,7 +10,8 @@ services:
       - pulsar
   pulsar:
     image: apachepulsar/pulsar
-   
+    ports:      
+      - "6650"
     environment:
       - PULSAR_MEM=" -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
     command: >

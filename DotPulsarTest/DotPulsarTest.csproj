@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="dotpulsar" Version="0.8.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.10" />
+    <PackageReference Include="pulsar.client" Version="1.2.0" />
   </ItemGroup>
 
 </Project>
