@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Buffers;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +19,13 @@ namespace DotPulsarTest
             CancellationTokenSource cts = new CancellationTokenSource();
             const string myTopic = "persistent://public/default/mytopic";
             
+            var tasks = new List<Task>();
+            tasks.Add(UsePulsarClient(myTopic, cts.Token));
+            tasks.Add(UseDotPulsar(myTopic, cts.Token));
+
+            Task.WaitAll(tasks.ToArray());
+
+            Console.ReadKey();
 
             cts.Cancel();
         }
