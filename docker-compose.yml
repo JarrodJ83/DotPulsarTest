@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  dotpulsartest:
+    image: ${DOCKER_REGISTRY-}dotpulsartest
+    build:
+      context: .
+      dockerfile: DotPulsarTest/Dockerfile
+    depends_on:
+      - pulsar
+  pulsar:
+    image: apachepulsar/pulsar
+   
+    environment:
+      - PULSAR_MEM=" -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
+    command: >
+      /bin/bash -c
+      "bin/apply-config-from-env.py conf/standalone.conf
+      && bin/pulsar standalone"
